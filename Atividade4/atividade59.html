@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivo Confuso da Computação</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-base-200 min-h-screen">
+
+    <!-- Navbar Fixa -->
+    <div class="navbar bg-base-100 shadow-sm sticky top-0 z-50">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                </div>
+                <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                    <li><a href="#pioneiros">Pioneiros</a></li>
+                    <li><a href="#bugs">Bugs</a></li>
+                    <li><a href="#internet">Internet</a></li>
+                    <li><a href="#formulario">Envie Algo</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-ghost text-xl font-bold">Fatos Históricos</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#pioneiros">Pioneiros</a></li>
+                <li><a href="#bugs">Bugs</a></li>
+                <li><a href="#internet">Internet</a></li>
+                <li><a href="#linguagens">Linguagens</a></li>
+                <li><a href="#easter-eggs">Easter Eggs</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <a class="btn btn-primary" href="#formulario">Contribuir</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero bg-base-100 py-10">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+            <img src="https://imgs.search.brave.com/oWGL6caS-4J403bFGROo-Vk9WwvXX4zZ21yhLBMrvms/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9jb25j/ZWl0by1kZS1wcm9n/cmFtYSVDMyVBNyVD/MyVBM28tZG8tbmVn/JUMzJUIzY2lvLWRh/LXRlY25vbG9naWEt/aW50ZXJuZXQtY29k/aWZpY2ElQzMlQTcl/QzMlQTNvLWRlc2Vu/dm9sdmltZW50by13/ZWItMTIxOTAzNTQ2/LmpwZw" class="max-w-sm rounded-lg shadow-2xl" />
+            <div>
+                <h1 class="text-5xl font-bold">Arquivo (Quase) Perdido da Ciência da Computação!</h1>
+                <p class="py-6 text-lg italic">Uma coletânea caótica de fatos históricos, curiosos e inesperados que você não sabia que precisava saber.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main class="max-w-6xl mx-auto p-6 space-y-16">
+
+        <!-- Seção: Pioneiros (Cards Estilo Ada Lovelace) -->
+        <section id="pioneiros">
+            <h2 class="text-3xl font-bold text-center mb-10">Pioneiros Esquecidos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card Ada Lovelace -->
+                <div class="card bg-base-100 image-full shadow-xl hover:scale-105 transition-transform">
+                    <figure><img src="https://imgs.search.brave.com/6G0s7TbWXkK9RChjzhLjedti5LILxA9JIK6zW1Ic8Ac/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA3LzUxLzc5Lzc1/LzM2MF9GXzc1MTc5/NzU4OF91N1h2Vk0z/czNEalRuQXpOUVo4/eGNEWmQ3d1hmc2NT/cS5qcGc" alt="Ada Lovelace" /></figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-2xl">Ada Lovelace</h2>
+                        <p>Considerada a primeira programadora da história. Escreveu o primeiro algoritmo para a Máquina Analítica.</p>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-primary btn-sm">Saber mais</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Alan Turing -->
+                <div class="card bg-base-100 image-full shadow-xl hover:scale-105 transition-transform">
+                    <figure><img src="https://imgs.search.brave.com/iEbvrQZ2uh5JW7kcC0-Tq8zvPq_eF7cEGNWKftd6LOU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YnJpdGFubmljYS5j/b20vMTQvODQ1MTQt/MDA0LTU0RTI1OTUy/L0FsYW4tTS1UdXJp/bmctMTk1MS5qcGc" alt="Alan Turing" /></figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-2xl">Alan Turing</h2>
+                        <p>O pai da computação moderna e o homem que decifrou o Enigma durante a Segunda Guerra.</p>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-primary btn-sm">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Grace Hopper -->
+                <div class="card bg-base-100 image-full shadow-xl hover:scale-105 transition-transform">
+                    <figure><img src="https://imgs.search.brave.com/A7Qin-mHiitiHVvaCWAz7ObONYa49wnZIwusKV9yNQI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93aWtp/LmluZi51ZnByLmJy/L2NvbXB1dGFjYW8v/bGliL2V4ZS9mZXRj/aC5waHA_dz00MDAm/dG9rPWJhNjNiYSZt/ZWRpYT1nOjN3bWFt/bGlrbHc2eW1qN2tq/Z2VhYm5xajVtLmpw/Zw" alt="Grace Hopper" /></figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-2xl">Grace Hopper</h2>
+                        <p>Criadora da linguagem COBOL e a pessoa que popularizou o termo "bug" (literalmente tirou uma mariposa de um computador).</p>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-primary btn-sm">Ver Bio</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Bugs e Histórias -->
+        <section id="bugs">
+            <div class="divider text-2xl font-bold">Histórias de Bugs & Erros</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="card bg-base-100 shadow-md p-6 border-l-4 border-error">
+                    <h3 class="text-xl font-bold">O Traço de Milhões</h3>
+                    <p>Em 1962, a sonda Mariner 1 explodiu por causa de um hífen faltante em uma fórmula. Um erro pequeno, um custo astronômico.</p>
+                </div>
+                <div class="card bg-base-100 shadow-md p-6 border-l-4 border-warning">
+                    <h3 class="text-xl font-bold">O Y2K (Bug do Milênio)</h3>
+                    <p>O pânico global de que os sistemas parariam em 2000. No fim, gastou-se bilhões em prevenção e nada explodiu (graças aos programadores!).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="bugs">
+            <div class="divider text-2xl font-bold">Curiosidade da Internet</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="card bg-base-100 shadow-md p-6 border-l-4 border-error">
+                    <h3 class="text-xl font-bold">Primeiro Website</h3>
+                    <p>Criado em 1991 por Tim Berners-Lee.</p>
+                </div>
+                <div class="card bg-base-100 shadow-md p-6 border-l-4 border-warning">
+                    <h3 class="text-xl font-bold">ARPANET</h3>
+                    <p>A precursora da internet moderna.</p>
+                    <p>Primeira mensagem enviada: "LO"</p>
+                    <p>O sistema caiu antes de completar "LOGIN"</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="card bg-base-100 shadow-md p-6 border-l-4 border-warning">
+                    <h3 class="text-xl font-bold">Emojis e ASCII</h3>
+                    <p>Antes dos emojis gráficos, usávamos:</p>
+                    <p>:-) ;-) :-D</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Linguagens (Tabela) -->
+        <section id="linguagens" class="overflow-x-auto">
+            <h2 class="text-2xl font-bold mb-4">Linguagens e Linha do Tempo</h2>
+            <table class="table table-zebra bg-white shadow-lg">
+                <thead class="bg-primary text-white text-lg">
+                    <tr>
+                        <th>Linguagem</th>
+                        <th>Ano de Criação</th>
+                        <th>Fato Curioso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>COBOL</td><td>1959</td><td>Ainda move o sistema bancário global.</td></tr>
+                    <tr><td>C</td><td>1972</td><td>Base de quase todos os sistemas modernos.</td></tr>
+                    <tr><td>Python</td><td>1991</td><td>Nomeado em homenagem ao Monty Python.</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        <!-- Seção: Linguagens (Tabela) -->
+        <section id="linha-do-tempo" class="overflow-x-auto">
+            <h2 class="text-2xl font-bold mb-4">Linha do Tempo </h2>
+            <table class="table table-zebra bg-white shadow-lg">
+                <thead class="bg-primary text-white text-lg">
+                    <tr>
+                        <th>Linguagem</th>
+                        <th>Ano de Criação</th>
+                        <th>Fato Curioso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Maquina Analitica</td>
+                    <tr><td>1946 - ENIAC</td><td>
+                    <tr><td>1969 - ARPANET</td><td>
+                    <tr><td>1991 - Primeiro site</td>
+                    <tr><td>2007 - Popularização dos smartphones</td>
+            </table>
+        </section>
+
+
+        <!-- Card Ada Lovelace -->
+                <div class="card bg-base-100 image-full shadow-xl hover:scale-105 transition-transform">
+                    <figure><img src="https://imgs.search.brave.com/71uqLJ49bp3L-_K762XSEz5BHOMS7hczb5uCdubkUw4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/d2F2ZWlnbC5jb20v/d2F2ZWlnbC53ZWJw" alt="Ada Lovelace" /></figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-2xl">Fatos Inúteis (Mas Incríveis) da Ciência da Computação</h2>
+                        <p>Considerada a primeira programadora da história. Escreveu o primeiro algoritmo para a Máquina Analítica.</p>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-primary btn-sm">Saber mais</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+        <!-- Seção: Formulário -->
+        <section id="formulario" class="card bg-neutral text-neutral-content p-8 shadow-2xl max-w-2xl mx-auto">
+            <h2 class="text-2xl font-bold text-center mb-6">Envie sua Curiosidade Inútil</h2>
+            <form class="space-y-4">
+                <div class="form-control">
+                    <label class="label"><span class="label-text text-white font-semibold">Nome:</span></label>
+                    <input type="text" class="input input-bordered text-black" placeholder="Seu nome" />
+                </div>
+                <div class="form-control">
+                    <label class="label"><span class="label-text text-white font-semibold">Sua curiosidade:</span></label>
+                    <textarea class="textarea textarea-bordered h-24 text-black" placeholder="Ex: O Bluetooth é um nome Viking..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Enviar para o Arquivo</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 bg-base-300 text-base-content mt-20">
+        <aside>
+            <p class="font-bold">Portal Computação Inc. <br/>Trazendo informações inúteis desde 2026</p> 
+            <p>© 2026 - Todos os direitos reservados ou perdidos no HD descartado.</p>
+        </aside>
+    </footer>
+
+</body>
+</html>
