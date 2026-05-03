@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Copa do Mundo 2026</title>
+</head>
+<body>
+
+    <h1>Informações da Copa do Mundo 2026</h1>
+    <button onclick="mostrarTabela()">Mostrar Tabela de Jogos</button>
+    <div id="container-tabela"></div>
+    <script>
+        function mostrarTabela() {
+            const container = document.getElementById('container-tabela');
+
+            if (container.innerHTML === "") {
+           
+                const img = document.createElement('img');
+        
+                img.src = 'Tabela_Jogos.png'; 
+                img.alt = 'Tabela Oficial de Jogos - Copa do Mundo da FIFA 2026';
+            
+                container.appendChild(img);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa do Mundo 2026 - Grupos Dinâmicos</title>
+    <style>
+     
+        body {
+            background-color: #f4f7f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1b4332;
+            margin-bottom: 20px;
+        }
+
+        .cartao-grupo {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #d8e2dc;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 { margin-top: 0; color: #2d6a4f; }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        li {
+            background-color: #e9ecef;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        details {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px dashed #adc1b1;
+            cursor: pointer;
+        }
+
+   
+        #btn-proximo {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #2d6a4f;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        #btn-proximo:hover {
+            background-color: #1b4332;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="titulo-pagina">🏆 Grupos e Fatos - 2026</h1>
+
+   
+    <div id="container-grupos">
+   
+        <div id="g1" class="cartao-grupo">
+            <h2 id="titulo-g1">🅰️ Grupo A</h2>
+            <h3>Seleções:</h3>
+            <ul id="lista-g1">
+                <li>México</li><li>África do Sul</li><li>Coreia do Sul</li><li>República Tcheca</li>
+            </ul>
+            <details>
+                <summary>Saiba Mais</summary>
+                <p id="fato-g1">O jogo de abertura será México x África do Sul. Confrontos entre Coreia do Sul e seleções europeias já ocorreram em várias Copas, com histórico equilibrado.</p>
+            </details>
+        </div>
+
+       
+        <div id="g2" class="cartao-grupo">
+            <h2 id="titulo-g2">🅱️ Grupo B</h2>
+            <h3>Seleções:</h3>
+            <ul id="lista-g2">
+                <li>Canadá</li><li>Suíça</li><li>Catar</li><li>Vaga Europeia (Bósnia)</li>
+            </ul>
+            <details>
+                <summary>Saiba Mais</summary>
+                <p id="fato-g2">O Canadá joga em casa, fator importante de desempenho. Catar e Suíça já se enfrentaram recentemente em amistosos internacionais.</p>
+            </details>
+        </div>
+
+    
+        <div id="g3" class="cartao-grupo">
+            <h2 id="titulo-g3">🅲 Grupo C</h2>
+            <h3>Seleções:</h3>
+            <ul id="lista-g3">
+                <li>Brasil</li><li>Marrocos</li><li>Haiti</li><li>Escócia</li>
+            </ul>
+            <details>
+                <summary>Saiba Mais</summary>
+                <p id="fato-g3">Brasil, Marrocos e Escócia já dividiram grupo em 1998. Brasil nunca perdeu para a Escócia em Copas.</p>
+            </details>
+        </div>
+    </div>
+
+   
+    <button id="btn-proximo" onclick="alternarGrupos()">Próximo</button>
+
+    <script>
+        function alternarGrupos() {
+           
+            const novosDados = {
+                g1: {
+                    titulo: "🅳 Grupo D",
+                    selecoes: ["Estados Unidos", "Paraguai", "Austrália", "Turquia"],
+                    fato: "Os EUA jogam em casa, vantagem histórica em Copas. Austrália enfrenta frequentemente seleções sul-americanas em torneios."
+                },
+                g2: {
+                    titulo: "🅴 Grupo E",
+                    selecoes: ["Alemanha", "Equador", "Costa do Marfim", "Curaçao"],
+                    fato: "Alemanha costuma dominar fases de grupos. Equador e Costa do Marfim têm estilos físicos semelhantes."
+                },
+                g3: {
+                    titulo: "🅵 Grupo F",
+                    selecoes: ["Holanda", "Japão", "Tunísia", "Suécia"],
+                    fato: "Brasil, Marrocos e Escócia já dividiram grupo em 1998. Brasil nunca perdeu para a Escócia em Copas."
+                }
+            };
+
+      
+            document.getElementById("titulo-g1").innerText = novosDados.g1.titulo;
+            document.getElementById("fato-g1").innerText = novosDados.g1.fato;
+            document.getElementById("lista-g1").innerHTML = novosDados.g1.selecoes.map(s => `<li>${s}</li>`).join("");
+
+           
+            document.getElementById("titulo-g2").innerText = novosDados.g2.titulo;
+            document.getElementById("fato-g2").innerText = novosDados.g2.fato;
+            document.getElementById("lista-g2").innerHTML = novosDados.g2.selecoes.map(s => `<li>${s}</li>`).join("");
+
+            document.getElementById("titulo-g3").innerText = novosDados.g3.titulo;
+            document.getElementById("fato-g3").innerText = novosDados.g3.fato;
+            document.getElementById("lista-g3").innerHTML = novosDados.g3.selecoes.map(s => `<li>${s}</li>`).join("");
+
+           
+            document.getElementById("btn-proximo").style.display = "none";
+            document.getElementById("titulo-pagina").innerText = "🏆 Grupos e Fatos - Novos Grupos";
+        }
+    </script>
+</body>
+</html>
