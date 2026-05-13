@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de CPF</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+        h2 { color: #333; margin-bottom: 1.5rem; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus { border-color: #007bff; }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #0056b3; }
+        #resultado {
+            margin-top: 1.5rem;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 6px;
+            display: none;
+        }
+        .sucesso { background-color: #d4edda; color: #155724; display: block !important; }
+        .erro { background-color: #f8d7da; color: #721c24; display: block !important; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Validador de CPF</h2>
+    <input type="text" id="cpfInput" placeholder="000.000.000-00" maxlength="14">
+    <button onclick="validar()">Validar</button>
+    <div id="resultado"></div>
+</div>
+
+<script>
+    function validar() {
+        const input = document.getElementById('cpfInput').value;
+        const resultadoDiv = document.getElementById('resultado');
+    
+        const cpf = input.replace(/\D/g, '');
+
+        if (validarCPF(cpf)) {
+            resultadoDiv.innerText = "CPF Válido!";
+            resultadoDiv.className = "sucesso";
+        } else {
+            resultadoDiv.innerText = "CPF Inválido!";
+            resultadoDiv.className = "erro";
+        }
+    }
+    function validarCPF(cpf) {
+    
+        if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
+
+        const calcularDigito = (corpo, pesoInicial) => {
+            let soma = 0;
+            for (let i = 0; i < corpo.length; i++) {
+                soma += parseInt(corpo.charAt(i)) * (pesoInicial - i);
+            }
+            let resto = (soma * 10) % 11;
+            return resto === 10 ? 0 : resto;
+        };
+        const digito1 = calcularDigito(cpf.substring(0, 9), 10);
+        if (digito1 !== parseInt(cpf.substring(9, 10))) return false;
+   
+        const digito2 = calcularDigito(cpf.substring(0, 10), 11);
+        if (digito2 !== parseInt(cpf.substring(10, 11))) return false;
+
+        return true;
+    }
+    document.getElementById('cpfInput').addEventListener('input', function (e) {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/);
+        e.target.value = !x[2] ? x[1] : x[1] + '.' + x[2] + (x[3] ? '.' + x[3] : '') + (x[4] ? '-' + x[4] : '');
+    });
+</script>
+</body>
+</html>

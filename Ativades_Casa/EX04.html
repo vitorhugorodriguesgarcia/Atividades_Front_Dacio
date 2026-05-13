@@ -1,0 +1,41 @@
+<div class="card">
+    <h2>Simulador Infinity Bank</h2>
+    <input type="number" id="valorVenda" placeholder="Valor da Venda (R$)">
+    <select id="bandeira">
+        <option value="visa">Visa (2%)</option>
+        <option value="master">Mastercard (1.85%)</option>
+        <option value="elo">Elo (3%)</option>
+    </select>
+    <input type="number" id="parcelas" placeholder="Nº de Parcelas" min="1">
+    <button onclick="simularVenda()">Simular</button>
+
+    <div id="resumoVenda" style="margin-top: 15px; text-align: left; font-size: 0.9em;"></div>
+</div>
+<script>
+    function simularVenda() {
+        const valor = Number(document.getElementById('valorVenda').value);
+        const bandeira = document.getElementById('bandeira').value;
+        const qtdParcelas = parseInt(document.getElementById('parcelas').value);
+        const resumo = document.getElementById('resumoVenda');
+        let taxaBandeiraPerc = 0;
+        switch (bandeira) {
+            case 'visa': taxaBandeiraPerc = 0.02; break;
+            case 'master': taxaBandeiraPerc = 0.0185; break;
+            case 'elo': taxaBandeiraPerc = 0.03; break;
+        }
+        const valorTaxaBandeira = valor * taxaBandeiraPerc;
+        const valorJuros = valor * (0.015 * qtdParcelas);
+        const taxaFixaMensal = 12.50 * qtdParcelas;
+        
+        const valorTotal = valor + valorTaxaBandeira + valorJuros + taxaFixaMensal;
+        const valorParcela = valorTotal / qtdParcelas;
+        resumo.innerHTML = `
+            <hr>
+            <p><strong>Taxa Bandeira:</strong> R$ ${valorTaxaBandeira.toFixed(2)}</p>
+            <p><strong>Total Juros:</strong> R$ ${valorJuros.toFixed(2)}</p>
+            <p><strong>Taxas Mensais Fixas:</strong> R$ ${taxaFixaMensal.toFixed(2)}</p>
+            <p><strong>Valor Total:</strong> R$ ${valorTotal.toFixed(2)}</p>
+            <p><strong>Parcelas (${qtdParcelas}x):</strong> R$ ${valorParcela.toFixed(2)}</p>
+        `;
+    }
+</script>
