@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Bank - Lista de Convidados VIP</title>
+    <style>
+   
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+    
+        .card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .card h1 {
+            color: #1a1a1a;
+            font-size: 24px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: #0056b3;
+        }
+
+        .input-group button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .input-group button:hover {
+            background-color: #004085;
+        }
+
+       
+        .guest-list {
+            list-style: none;
+        }
+
+        .guest-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #eeeeee; 
+            transition: background-color 0.2s;
+        }
+
+        .guest-item:last-child {
+            border-bottom: none;
+        }
+
+        .guest-name {
+            font-size: 16px;
+            color: #333;
+            word-break: break-word;
+            transition: all 0.3s ease;
+        }
+
+      
+        .classe-riscado {
+            text-decoration: line-through;
+            color: #aaa;
+            font-style: italic;
+        }
+
+      
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-action {
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .btn-action:hover {
+            opacity: 0.85;
+        }
+
+        .btn-done {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Infinity Bank</h1>
+        <p>Lista de Convidados VIP</p>
+
+        <div class="input-group">
+            <input type="text" id="guestInput" placeholder="Nome do convidado VIP...">
+            <button id="addBtn">Adicionar</button>
+        </div>
+
+        <ul id="guestList" class="guest-list">
+         
+        </ul>
+    </div>
+
+    <script>
+     
+        const guestInput = document.getElementById('guestInput');
+        const addBtn = document.getElementById('addBtn');
+        const guestList = document.getElementById('guestList');
+
+    
+        let convidados = [];
+
+      
+        function renderizarLista() {
+           
+            guestList.innerHTML = '';
+
+            convidados.forEach((convidado, index) => {
+           
+                const li = document.createElement('li');
+                li.className = 'guest-item';
+
+            
+                const spanNome = document.createElement('span');
+                spanNome.className = 'guest-name';
+                spanNome.textContent = convidado.nome;
+                
+         
+                if (convidado.chegou) {
+                    spanNome.classList.add('classe-riscado');
+                }
+o
+                const actionDiv = document.createElement('div');
+                actionDiv.className = 'action-buttons';
+
+               
+                const btnDone = document.createElement('button');
+                btnDone.className = 'btn-action btn-done';
+                btnDone.textContent = convidado.chegou ? 'Desfazer' : 'Concluir';
+                btnDone.addEventListener('click', () => alternarPresenca(index));
+
+               
+                const btnEdit = document.createElement('button');
+                btnEdit.className = 'btn-action btn-edit';
+                btnEdit.textContent = 'Editar';
+                btnEdit.addEventListener('click', () => editarConvidado(index));
+
+                
+                const btnDelete = document.createElement('button');
+                btnDelete.className = 'btn-action btn-delete';
+                btnDelete.textContent = 'Excluir';
+                btnDelete.addEventListener('click', () => excluirConvidado(index));
+
+                actionDiv.appendChild(btnDone);
+                actionDiv.appendChild(btnEdit);
+                actionDiv.appendChild(btnDelete);
+
+                li.appendChild(spanNome);
+                li.appendChild(actionDiv);
+
+                guestList.appendChild(li);
+            });
+        }
+
+        function adicionarConvidado() {
+            const nomeDigitado = guestInput.value.trim(); 
+
+            if (nomeDigitado === '') {
+                alert('Por favor, digite um nome válido para o convidado.');
+                return;
+            }
+
+         
+            convidados.push({
+                nome: nomeDigitado,
+                chegou: false
+            });
+
+            
+            guestInput.value = '';
+            guestInput.focus();
+
+            renderizarLista();
+        }
+
+   
+        function alternarPresenca(index) {
+            convidados[index].chegou = !convidados[index].chegou;
+            renderizarLista();
+        }
+
+        function editarConvidado(index) {
+            const novoNome = prompt('Editar nome do VIP:', convidados[index].nome);
+            
+     
+            if (novoNome !== null) {
+                const nomeFormatado = novoNome.trim();
+                if (nomeFormatado !== '') {
+                    convidados[index].nome = nomeFormatado;
+                    renderizarLista();
+                } else {
+                    alert('O nome do convidado não pode ficar vazio.');
+                }
+            }
+        }
+
+        function excluirConvidado(index) {
+            if (confirm(`Tem certeza que deseja remover ${convidados[index].nome} da lista?`)) {
+                convidados.splice(index, 1); 
+                renderizarLista();
+            }
+        }
+
+        addBtn.addEventListener('click', adicionarConvidado);
+        
+        guestInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                adicionarConvidado();
+            }
+        });
+    </script>
+</body>
+</html>

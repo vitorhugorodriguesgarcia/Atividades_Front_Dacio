@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Bank - Calculadora de Orçamento VIP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+      
+        .card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .card h1 {
+            color: #1a1a1a;
+            font-size: 24px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .card p.subtitle {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+  
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        .form-group select, 
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group select:focus, 
+        .form-group input:focus {
+            border-color: #0056b3;
+        }
+
+      
+        .btn-calc {
+            width: 100%;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-calc:hover {
+            background-color: #004085;
+        }
+
+        .result-container {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #eeeeee; 
+            display: none; 
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .result-row.discount {
+            color: #28a745;
+            font-weight: 500;
+        }
+
+        .result-row.total {
+            border-top: 2px dashed #eee;
+            padding-top: 14px;
+            margin-top: 14px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Infinity Bank</h1>
+        <p class="subtitle">Simulador de Orçamento para Eventos</p>
+
+       
+        <div class="form-group">
+            <label for="packageSelect">Selecione o Pacote VIP</label>
+            <select id="packageSelect">
+                <option value="50">Standard (R$ 50,00 / pessoa)</option>
+                <option value="80">Premium (R$ 80,00 / pessoa)</option>
+                <option value="120">Infinity Deluxe (R$ 120,00 / pessoa)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="guestsInput">Quantidade de Pessoas</label>
+            <input type="number" id="guestsInput" min="1" placeholder="Ex: 50" value="1">
+        </div>
+
+        <button class="btn-calc" id="calcBtn">Calcular Orçamento</button>
+
+     
+        <div class="result-container" id="resultContainer">
+            <div class="result-row">
+                <span>Custo Bruto:</span>
+                <span id="resBruto">R$ 0,00</span>
+            </div>
+            <div class="result-row">
+                <span>Taxa de Serviço (10%):</span>
+                <span id="resTaxa">R$ 0,00</span>
+            </div>
+            <div class="result-row discount" id="discountRow">
+                <span>Desconto Fidelidade (5%):</span>
+                <span id="resDesconto">- R$ 0,00</span>
+            </div>
+            <div class="result-row total">
+                <span>Total Final:</span>
+                <span id="resTotal">R$ 0,00</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    
+        const packageSelect = document.getElementById('packageSelect');
+        const guestsInput = document.getElementById('guestsInput');
+        const calcBtn = document.getElementById('calcBtn');
+        const resultContainer = document.getElementById('resultContainer');
+        
+       
+        const resBruto = document.getElementById('resBruto');
+        const resTaxa = document.getElementById('resTaxa');
+        const resDesconto = document.getElementById('resDesconto');
+        const resTotal = document.getElementById('resTotal');
+        const discountRow = document.getElementById('discountRow');
+
+        function calcularOrcamento() {
+           
+            const valorPorPessoa = parseFloat(packageSelect.value);
+            const qtdConvidados = parseInt(guestsInput.value);
+
+        
+            if (isNaN(qtdConvidados) || qtdConvidados <= 0) {
+                alert('Por favor, insira uma quantidade válida de convidados (maior que zero).');
+                return;
+            }
+
+           
+            const custoBruto = valorPorPessoa * qtdConvidados;
+
+            const taxaServico = custoBruto * 0.10;
+
+         
+            const subtotalComTaxa = custoBruto + taxaServico;
+
+        
+            let desconto = 0;
+            if (qtdConvidados > 100) {
+                desconto = subtotalComTaxa * 0.05;
+                discountRow.style.display = 'flex'; 
+            } else {
+                discountRow.style.display = 'none';
+            }
+
+    
+            const totalFinal = subtotalComTaxa - desconto;
+          
+            resBruto.textContent = `R$ ${custoBruto.toFixed(2).replace('.', ',')}`;
+            resTaxa.textContent = `R$ ${taxaServico.toFixed(2).replace('.', ',')}`;
+            resDesconto.textContent = `- R$ ${desconto.toFixed(2).replace('.', ',')}`;
+            resTotal.textContent = `R$ ${totalFinal.toFixed(2).replace('.', ',')}`;
+
+         
+            resultContainer.style.display = 'block';
+        }
+
+      
+        calcBtn.addEventListener('click', calcularOrcamento);
+    </script>
+</body>
+</html>
